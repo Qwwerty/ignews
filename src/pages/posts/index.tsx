@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 
 import Link from 'next/link';
 import { RichText } from 'prismic-dom';
+import Head from 'next/head';
 
 interface Post {
   slug: string;
@@ -20,15 +21,15 @@ interface PostsProps {
 export default function Posts({ posts }: PostsProps) {
   return (
     <>
-      <head>
+      <Head>
         <title>Posts | Ignews</title>
-      </head>
+      </Head>
 
       <main className={styles.container} >
         <div className={styles.posts} >
           {posts.map(post => (
-            <Link href={`/posts/${post.slug}`} >
-              <a key={post.slug}>
+            <Link key={post.slug} href={`/posts/${post.slug}`} >
+              <a>
                 <time>{post.updatedAt}</time>
                 <strong>{post.title}</strong>
                 <p>{post.excerpt}</p>
